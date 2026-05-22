@@ -174,6 +174,27 @@ function CowsContent() {
   const activeCalves = calves.filter((calf) => calf.status === "Active").length;
   const selectedGroup = animalGroups.find((group) => group.type === selectedType);
   const selectedRecords = selectedGroup ? demoAnimalRecords[selectedGroup.type] || [] : [];
+  const selectedActiveRecords = selectedRecords.filter(([, , status]) => ["Active", "Milking", "Fresh"].includes(status)).length;
+  const selectedWatchRecords = selectedRecords.filter(([, , status]) => status === "Watch").length;
+  const selectedSoldOrDryRecords = selectedRecords.filter(([, , status]) => ["Sold", "Dry"].includes(status)).length;
+  const selectedLocations = new Set(selectedRecords.map(([, , , location]) => location).filter((location) => location && location !== "Sold")).size;
+  const summaryCards = selectedGroup
+    ? [
+        { value: selectedRecords.length, label: selectedGroup.title },
+        { value: selectedActiveRecords, label: selectedGroup.type === "milk-cows" ? "Milking/fresh" : "Active" },
+        { value: selectedWatchRecords, label: "Need watching" },
+        { value: selectedSoldOrDryRecords, label: selectedGroup.type === "milk-cows" ? "Sold/dry" : "Sold" },
+        { value: selectedLocations, label: "Locations" },
+        { value: selectedRecords.length, label: "Demo records" },
+      ]
+    : [
+        { value: activeCows, label: "Active cows" },
+        { value: activeCalves, label: "Active calves" },
+        { value: activeBulls, label: "Active bulls" },
+        { value: watchCows, label: "Need watching" },
+        { value: pastures.length, label: "Pastures" },
+        { value: activity.length, label: "Recent notes" },
+      ];
 
   return (
     <main className="app-shell">
@@ -183,13 +204,10 @@ function CowsContent() {
         <p className="muted">Choose the animal group first, then drill into tags, health notes, locations, and reports.</p>
       </header>
 
-      <section className="stats-grid cow-stats" aria-label="Herd summary">
-        <div className="stat-card"><strong>{activeCows}</strong><span>Active cows</span></div>
-        <div className="stat-card"><strong>{activeCalves}</strong><span>Active calves</span></div>
-        <div className="stat-card"><strong>{activeBulls}</strong><span>Active bulls</span></div>
-        <div className="stat-card"><strong>{watchCows}</strong><span>Need watching</span></div>
-        <div className="stat-card"><strong>{pastures.length}</strong><span>Pastures</span></div>
-        <div className="stat-card"><strong>{activity.length}</strong><span>Recent notes</span></div>
+      <section className="stats-grid cow-stats" aria-label={selectedGroup ? `${selectedGroup.title} summary` : "Herd summary"}>
+        {summaryCards.map((card) => (
+          <div className="stat-card" key={card.label}><strong>{card.value}</strong><span>{card.label}</span></div>
+        ))}
       </section>
 
       <section>
