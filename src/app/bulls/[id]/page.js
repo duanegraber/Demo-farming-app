@@ -5,59 +5,59 @@ import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { loadActivity, loadBulls } from "../../components/farmStore";
 
-export default function BullProfile() {
+export default function SireProfile() {
   const params = useParams();
-  const [bulls, setBulls] = useState([]);
+  const [sires, setSires] = useState([]);
   const [activity, setActivity] = useState([]);
 
   useEffect(() => {
     const id = window.requestAnimationFrame(() => {
-      loadBulls().then(setBulls).catch(console.error);
+      loadBulls().then(setSires).catch(console.error);
       loadActivity().then(setActivity).catch(console.error);
     });
     return () => window.cancelAnimationFrame(id);
   }, []);
 
-  const bull = bulls.find((item) => item.id === params.id);
+  const sire = sires.find((item) => item.id === params.id);
   const timeline = useMemo(() => {
-    if (!bull) return [];
-    return activity.filter((item) => item.title?.includes(`Bull ${bull.tag}`) || item.detail?.includes(`Bull ${bull.tag}`));
-  }, [activity, bull]);
+    if (!sire) return [];
+    return activity.filter((item) => item.title?.includes(`Sire ${sire.tag}`) || item.detail?.includes(`Sire ${sire.tag}`));
+  }, [activity, sire]);
 
-  if (!bull) {
-    return <main className="app-shell"><Link href="/bulls" className="back-link">← Bull list</Link><h1>Loading bull...</h1></main>;
+  if (!sire) {
+    return <main className="app-shell"><Link href="/sires" className="back-link">← Sire list</Link><h1>Loading sire...</h1></main>;
   }
 
   return (
     <main className="app-shell">
       <header className="page-header">
-        <Link href="/bulls" className="back-link">← Bull list</Link>
+        <Link href="/sires" className="back-link">← Sire list</Link>
         <div className="row-between">
-          <h1>Bull {bull.tag}</h1>
-          <span className={`pill ${bull.status === "Watch" ? "warning" : ""} ${["Sold", "Dead", "Culled"].includes(bull.status) ? "danger" : ""}`}>{bull.status}</span>
+          <h1>Sire {sire.tag}</h1>
+          <span className={`pill ${sire.status === "Watch" ? "warning" : ""} ${["Sold", "Dead", "Culled"].includes(sire.status) ? "danger" : ""}`}>{sire.status}</span>
         </div>
-        <p className="muted">{bull.name} • {bull.breed} • {bull.location}</p>
+        <p className="muted">{sire.name} • {sire.breed} • {sire.location}</p>
       </header>
 
       <section className="detail-grid">
-        <div><span>Name</span><strong>{bull.name}</strong></div>
-        <div><span>Breed</span><strong>{bull.breed}</strong></div>
-        <div><span>Purchase</span><strong>{bull.purchaseCost ? `$${Number(bull.purchaseCost).toLocaleString()}` : "Not recorded"}{bull.dateBought ? ` • ${bull.dateBought}` : ""}</strong></div>
-        <div><span>Sale</span><strong>{bull.sellingAmount ? `$${Number(bull.sellingAmount).toLocaleString()}` : "Not sold"}{bull.dateSold ? ` • ${bull.dateSold}` : ""}</strong></div>
-        <div><span>Notes</span><strong>{bull.notes}</strong></div>
+        <div><span>Name</span><strong>{sire.name}</strong></div>
+        <div><span>Breed</span><strong>{sire.breed}</strong></div>
+        <div><span>Purchase</span><strong>{sire.purchaseCost ? `$${Number(sire.purchaseCost).toLocaleString()}` : "Not recorded"}{sire.dateBought ? ` • ${sire.dateBought}` : ""}</strong></div>
+        <div><span>Sale</span><strong>{sire.sellingAmount ? `$${Number(sire.sellingAmount).toLocaleString()}` : "Not sold"}{sire.dateSold ? ` • ${sire.dateSold}` : ""}</strong></div>
+        <div><span>Notes</span><strong>{sire.notes}</strong></div>
       </section>
 
       <section>
         <div className="section-heading"><h2>Quick update</h2></div>
         <div className="action-grid two">
-          <Link className="action-card" href={`/bulls/${bull.id}/edit`}><span>✏️</span><strong>Edit bull</strong></Link>
-          <Link className="action-card" href={`/vaccinations/new?type=Bull&tag=${bull.tag}`}><span>💉</span><strong>Add vaccination</strong></Link>
-          <Link className="action-card" href={`/notes/new?tag=${bull.tag}`}><span>📝</span><strong>Log note</strong></Link>
+          <Link className="action-card" href={`/sires/${sire.id}/edit`}><span>✏️</span><strong>Edit sire</strong></Link>
+          <Link className="action-card" href={`/vaccinations/new?type=Sire&tag=${sire.tag}`}><span>💉</span><strong>Add vaccination</strong></Link>
+          <Link className="action-card" href={`/notes/new?tag=${sire.tag}`}><span>📝</span><strong>Log note</strong></Link>
         </div>
       </section>
 
       <section>
-        <div className="section-heading"><h2>Bull timeline</h2></div>
+        <div className="section-heading"><h2>Sire timeline</h2></div>
         <div className="stack">
           {timeline.map((item) => (
             <article className="list-card" key={item.id}>
@@ -67,7 +67,7 @@ export default function BullProfile() {
               <small>Added by {item.user}</small>
             </article>
           ))}
-          {timeline.length === 0 && <article className="list-card"><h3>No timeline yet</h3><p>Log a note for bull {bull.tag} and it will show here.</p></article>}
+          {timeline.length === 0 && <article className="list-card"><h3>No timeline yet</h3><p>Log a note for sire {sire.tag} and it will show here.</p></article>}
         </div>
       </section>
     </main>

@@ -3,17 +3,17 @@ import BottomNav from "./components/BottomNav";
 
 const sections = [
   {
-    eyebrow: "Cow/calf records",
-    title: "Cows",
-    href: "/cows",
+    eyebrow: "Livestock records",
+    title: "Livestock",
+    href: "/livestock",
     icon: "🐄",
-    description: "Search tags, add cows and calves, check bulls, pastures, and herd activity.",
+    description: "Search tags, add livestock and offspring, check sires, locations, and herd activity.",
     actions: [
-      { label: "Cow list", href: "/cows" },
-      { label: "Add cow", href: "/cows/new" },
-      { label: "Add calf", href: "/calves/new" },
-      { label: "Bulls", href: "/bulls" },
-      { label: "Report", href: "/cows/report" },
+      { label: "Livestock list", href: "/livestock" },
+      { label: "Add animal", href: "/livestock/new" },
+      { label: "Add offspring", href: "/offspring/new" },
+      { label: "Sires", href: "/sires" },
+      { label: "Report", href: "/livestock/report" },
     ],
   },
   {
@@ -49,7 +49,7 @@ export default function Home() {
       <section className="hero-card landing-hero">
         <p className="eyebrow">Demo Farm Manager</p>
         <h1>A simple farm app demo.</h1>
-        <p className="muted">Show cattle, field, equipment, and crop-year records with sample data already loaded.</p>
+        <p className="muted">Show livestock, field, equipment, and crop-year records with sample data already loaded.</p>
       </section>
 
       <section className="search-card">

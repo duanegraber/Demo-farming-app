@@ -92,7 +92,7 @@ export default function AuthGate({ children }) {
       <section className="hero-card">
         <p className="eyebrow">Private farm records</p>
         <h1>Demo Farm Manager</h1>
-        <p className="muted">Sign in before viewing or changing cattle records.</p>
+        <p className="muted">Sign in before viewing or changing livestock records.</p>
       </section>
 
       <form className="form-card" onSubmit={handleSubmit}>

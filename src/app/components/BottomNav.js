@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/cows", label: "Cows" },
+  { href: "/livestock", label: "Livestock" },
   { href: "/farming", label: "Farming" },
   { href: "/equipment", label: "Equipment" },
   { href: "/activity", label: "Activity" },
@@ -18,7 +18,9 @@ export default function BottomNav() {
   return (
     <nav className="bottom-nav" aria-label="Primary navigation">
       {links.map((link) => {
-        const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+        const isActive = link.href === "/"
+          ? pathname === "/"
+          : pathname.startsWith(link.href) || (link.href === "/livestock" && pathname.startsWith("/cows"));
         return (
           <Link className={isActive ? "active" : ""} href={link.href} key={link.href}>
             {link.label}

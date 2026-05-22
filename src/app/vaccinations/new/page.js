@@ -9,7 +9,7 @@ function AddVaccinationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [form, setForm] = useState({
-    animalType: searchParams.get("type") || "Cow",
+    animalType: searchParams.get("type") || "Animal",
     tag: searchParams.get("tag") || "",
     vaccine: "",
     date: new Date().toISOString().slice(0, 10),
@@ -32,18 +32,18 @@ function AddVaccinationContent() {
     <main className="app-shell">
       <header className="page-header">
         <Link href="/" className="back-link">← Home</Link>
-        <h1>Add Vaccination</h1>
-        <p className="muted">Record vaccine treatments for cows or calves.</p>
+        <h1>Add Health Record</h1>
+        <p className="muted">Record vaccine treatments or health notes for livestock.</p>
       </header>
 
       <form className="form-card" onSubmit={handleSubmit}>
-        <label>Animal type<select value={form.animalType} onChange={(event) => updateField("animalType", event.target.value)}><option>Cow</option><option>Calf</option></select></label>
-        <label>Tag number<input required value={form.tag} onChange={(event) => updateField("tag", event.target.value)} placeholder="Cow or calf tag" inputMode="numeric" /></label>
+        <label>Animal type<select value={form.animalType} onChange={(event) => updateField("animalType", event.target.value)}><option>Animal</option><option>Offspring</option><option>Sire</option></select></label>
+        <label>Tag number<input required value={form.tag} onChange={(event) => updateField("tag", event.target.value)} placeholder="Animal or offspring tag" inputMode="numeric" /></label>
         <label>Vaccine / treatment<input required value={form.vaccine} onChange={(event) => updateField("vaccine", event.target.value)} placeholder="Example: 8-way, scour vaccine..." /></label>
         <label>Date given<input type="date" value={form.date} onChange={(event) => updateField("date", event.target.value)} /></label>
         <label>Notes<textarea value={form.notes} onChange={(event) => updateField("notes", event.target.value)} placeholder="Dose, lot number, booster due, etc." /></label>
         <label>Recorded by<select value={form.user} onChange={(event) => updateField("user", event.target.value)}><option>Sam</option><option>Maya</option><option>Riley</option><option>Alex</option></select></label>
-        <button type="submit" className="button full">Save vaccination</button>
+        <button type="submit" className="button full">Save health record</button>
       </form>
     </main>
   );

@@ -14,14 +14,14 @@ const CROP_SALES_KEY = "demo-farming-app-crop-sales";
 const EQUIPMENT_KEY = "demo-farming-app-equipment";
 const EQUIPMENT_LOGS_KEY = "demo-farming-app-equipment-logs";
 const DEMO_SEED_KEY = "demo-farming-app-seed-version";
-const DEMO_SEED_VERSION = "2026-05-21-a";
+const DEMO_SEED_VERSION = "2026-05-21-b";
 
 const demoCows = [
-  { id: "demo-cow-101", tag: "101", status: "Active", color: "Black", location: "North Quarter", lastCalved: "2026-03-28", calfTag: "501", purchaseCost: 2400, dateBought: "2023-11-12", sellingAmount: "", dateSold: "", notes: "Quiet mature cow. Good demo record for calving history." },
-  { id: "demo-cow-118", tag: "118", status: "Active", color: "Red", location: "River Bend", lastCalved: "2026-04-02", calfTag: "506", purchaseCost: 2200, dateBought: "2024-01-18", sellingAmount: "", dateSold: "", notes: "Strong pair; watch mineral intake on grass." },
-  { id: "demo-cow-124", tag: "124", status: "Watch", color: "Black brockle", location: "Yard Pasture", lastCalved: "2026-04-11", calfTag: "512", purchaseCost: 2600, dateBought: "2024-02-05", sellingAmount: "", dateSold: "", notes: "Demo watch-list animal: treated for foot soreness May 3." },
-  { id: "demo-cow-137", tag: "137", status: "Active", color: "Red whiteface", location: "South Lease", lastCalved: "2026-03-21", calfTag: "498", purchaseCost: 2350, dateBought: "2023-12-01", sellingAmount: "", dateSold: "", notes: "Early calver with a healthy bull calf." },
-  { id: "demo-cow-144", tag: "144", status: "Open", color: "Black", location: "North Quarter", lastCalved: "", calfTag: "", purchaseCost: 2100, dateBought: "2022-10-20", sellingAmount: "", dateSold: "", notes: "Marked open after preg check; good example for status filtering." },
+  { id: "demo-cow-101", tag: "101", status: "Active", color: "Black", location: "North Quarter", lastCalved: "2026-03-28", calfTag: "501", offspringTag: "501", purchaseCost: 2400, dateBought: "2023-11-12", sellingAmount: "", dateSold: "", notes: "Quiet mature animal. Good demo record for offspring history." },
+  { id: "demo-cow-118", tag: "118", status: "Active", color: "Red", location: "River Bend", lastCalved: "2026-04-02", calfTag: "506", offspringTag: "506", purchaseCost: 2200, dateBought: "2024-01-18", sellingAmount: "", dateSold: "", notes: "Strong pair; watch mineral intake on grass." },
+  { id: "demo-cow-124", tag: "124", status: "Watch", color: "Black brockle", location: "Yard Pasture", lastCalved: "2026-04-11", calfTag: "512", offspringTag: "512", purchaseCost: 2600, dateBought: "2024-02-05", sellingAmount: "", dateSold: "", notes: "Demo watch-list animal: treated for foot soreness May 3." },
+  { id: "demo-cow-137", tag: "137", status: "Active", color: "Red whiteface", location: "South Lease", lastCalved: "2026-03-21", calfTag: "498", offspringTag: "498", purchaseCost: 2350, dateBought: "2023-12-01", sellingAmount: "", dateSold: "", notes: "Early record with healthy offspring." },
+  { id: "demo-cow-144", tag: "144", status: "Open", color: "Black", location: "North Quarter", lastCalved: "", calfTag: "", offspringTag: "", purchaseCost: 2100, dateBought: "2022-10-20", sellingAmount: "", dateSold: "", notes: "Marked open after preg check; good example for status filtering." },
 ];
 
 const demoCalves = [
@@ -32,14 +32,14 @@ const demoCalves = [
 ];
 
 const demoBulls = [
-  { id: "demo-bull-7", tag: "B7", name: "Northline", status: "Active", breed: "Red Angus", location: "North Quarter", purchaseCost: 5200, dateBought: "2024-03-15", sellingAmount: "", dateSold: "", notes: "Main Red Angus bull for mature cows." },
-  { id: "demo-bull-12", tag: "B12", name: "Ridge", status: "Resting", breed: "Black Angus", location: "Yard Pasture", purchaseCost: 6100, dateBought: "2025-02-20", sellingAmount: "", dateSold: "", notes: "Backup bull; feet checked May 8." },
+  { id: "demo-bull-7", tag: "B7", name: "Northline", status: "Active", breed: "Red Angus", location: "North Quarter", purchaseCost: 5200, dateBought: "2024-03-15", sellingAmount: "", dateSold: "", notes: "Main Red Angus sire for mature animals." },
+  { id: "demo-bull-12", tag: "B12", name: "Ridge", status: "Resting", breed: "Black Angus", location: "Yard Pasture", purchaseCost: 6100, dateBought: "2025-02-20", sellingAmount: "", dateSold: "", notes: "Backup sire; feet checked May 8." },
 ];
 
 const demoActivity = [
-  { id: "demo-event-1", type: "Calving", title: "Cow 101 had heifer calf 501", detail: "Unassisted birth. Tagged at turnout.", user: "Sam", cowTag: "101", time: "Mar 28, 8:15 AM" },
-  { id: "demo-event-2", type: "Treatment", title: "Cow 124 foot soreness", detail: "Treated and moved to Yard Pasture for easier checking.", user: "Maya", cowTag: "124", time: "May 3, 6:30 PM" },
-  { id: "demo-event-3", type: "Pasture move", title: "Pairs moved to River Bend", detail: "Moved 26 pairs after fencing check.", user: "Alex", cowTag: null, time: "May 10, 2:10 PM" },
+  { id: "demo-event-1", type: "Calving", title: "Animal 101 had offspring 501", detail: "Unassisted birth. Tagged at turnout.", user: "Sam", cowTag: "101", time: "Mar 28, 8:15 AM" },
+  { id: "demo-event-2", type: "Treatment", title: "Animal 124 foot soreness", detail: "Treated and moved to Yard Pasture for easier checking.", user: "Maya", cowTag: "124", time: "May 3, 6:30 PM" },
+  { id: "demo-event-3", type: "Location move", title: "Pairs moved to River Bend", detail: "Moved 26 pairs after fencing check.", user: "Alex", cowTag: null, time: "May 10, 2:10 PM" },
 ];
 
 const demoFields = [
@@ -124,6 +124,7 @@ function cowFromDb(row) {
     location: row.location,
     lastCalved: row.last_calved,
     calfTag: row.calf_tag,
+    offspringTag: row.calf_tag,
     purchaseCost: row.purchase_cost ?? "",
     dateBought: row.date_bought || "",
     sellingAmount: row.selling_amount ?? "",
@@ -479,16 +480,7 @@ export function seedDemoFarmData() {
   if (hasSupabaseConfig || !canUseStorage()) return;
   if (window.localStorage.getItem(DEMO_SEED_KEY) === DEMO_SEED_VERSION) return;
 
-  writeDemoJsonIfEmpty(COWS_KEY, demoCows);
-  writeDemoJsonIfEmpty(CALVES_KEY, demoCalves);
-  writeDemoJsonIfEmpty(BULLS_KEY, demoBulls);
-  writeDemoJsonIfEmpty(ACTIVITY_KEY, demoActivity);
-  writeDemoJsonIfEmpty(FIELDS_KEY, demoFields);
-  writeDemoJsonIfEmpty(FIELD_ACTIVITIES_KEY, demoFieldActivities);
-  writeDemoJsonIfEmpty(CROP_SALES_KEY, demoCropSales);
-  writeDemoJsonIfEmpty(EQUIPMENT_KEY, demoEquipment);
-  writeDemoJsonIfEmpty(EQUIPMENT_LOGS_KEY, demoEquipmentLogs);
-  window.localStorage.setItem(DEMO_SEED_KEY, DEMO_SEED_VERSION);
+  writeDemoSeedData();
 }
 
 export function resetDemoFarmData() {
@@ -567,6 +559,19 @@ export async function loadPastures() {
   const { data, error } = await supabase.from("pastures").select("name").order("name", { ascending: true });
   if (error) return getPastures();
   return uniquePastureNames([...defaultPastures, ...data.map(pastureFromDb)]);
+}
+
+
+export async function loadLivestock() {
+  return loadCows();
+}
+
+export async function loadSires() {
+  return loadBulls();
+}
+
+export async function loadLocations() {
+  return loadPastures();
 }
 
 export async function createPasture(values) {
@@ -1109,7 +1114,7 @@ export async function createCow(values) {
     color: values.color.trim() || "No description yet",
     location: values.location.trim() || "Not set",
     last_calved: values.lastCalved ? formatInputDate(values.lastCalved) : "Not calved yet",
-    calf_tag: values.calfTag.trim() || null,
+    calf_tag: (values.calfTag || values.offspringTag || "").trim() || null,
     purchase_cost: formatMoney(values.purchaseCost),
     date_bought: formatOptionalDate(values.dateBought),
     selling_amount: formatMoney(values.sellingAmount),
@@ -1123,8 +1128,8 @@ export async function createCow(values) {
     const { data, error } = await insertCowWithFallback(cowInput);
     if (error) throw error;
     await addActivity({
-      type: "Cow added",
-      title: `Cow ${data.tag} added`,
+      type: "Animal added",
+      title: `Animal ${data.tag} added`,
       detail: data.notes,
       user: values.user || "Alex",
       cowTag: data.tag,
@@ -1141,6 +1146,7 @@ export async function createCow(values) {
     location: cowInput.location,
     lastCalved: cowInput.last_calved,
     calfTag: cowInput.calf_tag,
+    offspringTag: cowInput.calf_tag,
     purchaseCost: cowInput.purchase_cost ?? "",
     dateBought: cowInput.date_bought || "",
     sellingAmount: cowInput.selling_amount ?? "",
@@ -1148,7 +1154,7 @@ export async function createCow(values) {
     notes: cowInput.notes,
   };
   writeJson(COWS_KEY, [cow, ...cows]);
-  addActivity({ type: "Cow added", title: `Cow ${cow.tag} added`, detail: cow.notes, user: values.user || "Alex", cowTag: cow.tag });
+  addActivity({ type: "Animal added", title: `Animal ${cow.tag} added`, detail: cow.notes, user: values.user || "Alex", cowTag: cow.tag });
   return cow;
 }
 
@@ -1159,7 +1165,7 @@ export async function updateCow(id, values) {
     color: values.color.trim() || "No description yet",
     location: values.location.trim() || "Not set",
     last_calved: values.lastCalved ? formatInputDate(values.lastCalved) : "Not calved yet",
-    calf_tag: values.calfTag.trim() || null,
+    calf_tag: (values.calfTag || values.offspringTag || "").trim() || null,
     purchase_cost: formatMoney(values.purchaseCost),
     date_bought: formatOptionalDate(values.dateBought),
     selling_amount: formatMoney(values.sellingAmount),
@@ -1173,8 +1179,8 @@ export async function updateCow(id, values) {
     const { data, error } = await updateCowWithFallback(id, cowInput);
     if (error) throw error;
     await addActivity({
-      type: "Cow updated",
-      title: `Cow ${data.tag} updated`,
+      type: "Animal updated",
+      title: `Animal ${data.tag} updated`,
       detail: `Status: ${data.status}. Location: ${data.location}.`,
       user: values.user || "Alex",
       cowTag: data.tag,
@@ -1185,12 +1191,12 @@ export async function updateCow(id, values) {
   const cows = getCows();
   const updated = cows.map((cow) =>
     cow.id === id
-      ? { ...cow, tag: cowInput.tag, status: cowInput.status, color: cowInput.color, location: cowInput.location, lastCalved: cowInput.last_calved, calfTag: cowInput.calf_tag, purchaseCost: cowInput.purchase_cost ?? "", dateBought: cowInput.date_bought || "", sellingAmount: cowInput.selling_amount ?? "", dateSold: cowInput.date_sold || "", notes: cowInput.notes }
+      ? { ...cow, tag: cowInput.tag, status: cowInput.status, color: cowInput.color, location: cowInput.location, lastCalved: cowInput.last_calved, calfTag: cowInput.calf_tag, offspringTag: cowInput.calf_tag, purchaseCost: cowInput.purchase_cost ?? "", dateBought: cowInput.date_bought || "", sellingAmount: cowInput.selling_amount ?? "", dateSold: cowInput.date_sold || "", notes: cowInput.notes }
       : cow
   );
   writeJson(COWS_KEY, updated);
   const newCow = updated.find((cow) => cow.id === id);
-  addActivity({ type: "Cow updated", title: `Cow ${newCow.tag} updated`, detail: `Status: ${newCow.status}. Location: ${newCow.location}.`, user: values.user || "Alex", cowTag: newCow.tag });
+  addActivity({ type: "Animal updated", title: `Animal ${newCow.tag} updated`, detail: `Status: ${newCow.status}. Location: ${newCow.location}.`, user: values.user || "Alex", cowTag: newCow.tag });
   return newCow;
 }
 

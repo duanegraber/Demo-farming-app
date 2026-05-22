@@ -4,7 +4,7 @@ Mobile-first demo farming web app cloned from the JTG Farms structure and cleane
 
 ## What it demonstrates
 
-- Cattle records: cows, calves, bulls, pastures, notes, and cattle report
+- Livestock records: animals, offspring, sires, locations, notes, and livestock report
 - Field records: fields, crop-year activities, harvest/yield notes, crop sales, and crop report
 - Equipment records: machines, maintenance, repairs, fuel, yearly cost tracking
 - Admin/export screens for simple handoff conversations
