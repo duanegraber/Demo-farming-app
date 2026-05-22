@@ -2,20 +2,20 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { createPasture, loadLocations, loadLivestock, loadSires } from "../components/farmStore";
+import { createPasture, loadBulls, loadCows, loadPastures } from "../components/farmStore";
 
 export default function PasturesPage() {
-  const [livestock, setLivestock] = useState([]);
-  const [sires, setSires] = useState([]);
-  const [locations, setLocations] = useState([]);
+  const [cows, setCows] = useState([]);
+  const [bulls, setBulls] = useState([]);
+  const [pastures, setPastures] = useState([]);
   const [form, setForm] = useState({ name: "", notes: "", user: "Alex" });
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
 
   function refreshData() {
-    loadLocations().then(setLocations).catch(console.error);
-    loadLivestock().then(setLivestock).catch(console.error);
-    loadSires().then(setSires).catch(console.error);
+    loadPastures().then(setPastures).catch(console.error);
+    loadCows().then(setCows).catch(console.error);
+    loadBulls().then(setBulls).catch(console.error);
   }
 
   useEffect(() => {
@@ -38,47 +38,47 @@ export default function PasturesPage() {
       setMessage(`${pasture} added.`);
       refreshData();
     } catch (error) {
-      setMessage(error.message || "Could not add location.");
+      setMessage(error.message || "Could not add pasture.");
     } finally {
       setSaving(false);
     }
   }
 
-  const animalsByLocation = useMemo(() => {
-    return locations.map((location) => ({
-      location,
-      livestock: livestock.filter((animal) => animal.location === location),
-      sires: sires.filter((sire) => sire.location === location),
+  const animalsByPasture = useMemo(() => {
+    return pastures.map((pasture) => ({
+      pasture,
+      cows: cows.filter((cow) => cow.location === pasture),
+      bulls: bulls.filter((bull) => bull.location === pasture),
     }));
-  }, [livestock, locations, sires]);
+  }, [bulls, cows, pastures]);
 
   return (
     <main className="app-shell">
       <header className="page-header">
         <Link href="/" className="back-link">← Home</Link>
-        <h1>Locations</h1>
-        <p className="muted">Add barns, pens, pastures, or fields and see which animals are assigned to each one.</p>
+        <h1>Pastures</h1>
+        <p className="muted">Add pastures on the go and see which animals are assigned to each one.</p>
       </header>
 
       <form className="form-card" onSubmit={handleSubmit}>
-        <label>New location name<input required value={form.name} onChange={(event) => updateField("name", event.target.value)} placeholder="Example: North hay field" /></label>
+        <label>New pasture name<input required value={form.name} onChange={(event) => updateField("name", event.target.value)} placeholder="Example: North hay field" /></label>
         <label>Notes<textarea value={form.notes} onChange={(event) => updateField("notes", event.target.value)} placeholder="Optional: water, fence, grass condition..." /></label>
         <label>Added by<select value={form.user} onChange={(event) => updateField("user", event.target.value)}><option>Alex</option><option>Riley</option><option>Sam</option><option>Maya</option></select></label>
-        <button type="submit" disabled={saving} className="button full">{saving ? "Adding location..." : "Add location"}</button>
+        <button type="submit" disabled={saving} className="button full">{saving ? "Adding pasture..." : "Add pasture"}</button>
         {message && <p className="field-note">{message}</p>}
       </form>
 
       <section className="stack">
-        {animalsByLocation.map(({ location, livestock: locationLivestock, sires: locationSires }) => (
-          <article className="list-card" key={location}>
+        {animalsByPasture.map(({ pasture, cows: pastureCows, bulls: pastureBulls }) => (
+          <article className="list-card" key={pasture}>
             <div className="row-between">
-              <h2>{location}</h2>
-              <span className="pill">{locationLivestock.length} animals • {locationSires.length} sires</span>
+              <h2>{pasture}</h2>
+              <span className="pill">{pastureCows.length} cows • {pastureBulls.length} bulls</span>
             </div>
-            {locationLivestock.length > 0 || locationSires.length > 0 ? (
+            {pastureCows.length > 0 || pastureBulls.length > 0 ? (
               <div className="tag-list">
-                {locationLivestock.map((animal) => <Link href={`/livestock/${animal.id}`} key={animal.id}>Animal {animal.tag}</Link>)}
-                {locationSires.map((sire) => <Link href={`/sires/${sire.id}`} key={sire.id}>Sire {sire.tag}</Link>)}
+                {pastureCows.map((cow) => <Link href={`/cows/${cow.id}`} key={cow.id}>Cow {cow.tag}</Link>)}
+                {pastureBulls.map((bull) => <Link href={`/bulls/${bull.id}`} key={bull.id}>Bull {bull.tag}</Link>)}
               </div>
             ) : <p>No animals assigned here yet.</p>}
           </article>
