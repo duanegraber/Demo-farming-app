@@ -50,7 +50,7 @@ textarea {
   width: min(100%, 520px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 18px 14px 96px;
+  padding: 18px 14px 142px;
 }
 
 .hero-card,
@@ -342,7 +342,8 @@ textarea {
   transform: translateX(-50%);
   z-index: 5;
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
   width: min(calc(100% - 24px), 500px);
   padding: 8px;
   border: 1px solid var(--border);
@@ -352,12 +353,13 @@ textarea {
 }
 
 .bottom-nav a {
-  padding: 11px 4px;
+  padding: 10px 4px;
   border-radius: 15px;
   color: var(--green-dark);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 900;
   text-align: center;
+  white-space: nowrap;
 }
 
 .tag-list {
