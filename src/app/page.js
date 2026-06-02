@@ -66,9 +66,8 @@ export default function Home() {
       </section>
 
       <section className="search-card">
-        <p className="eyebrow">Try it with your farm</p>
-        <p className="muted">Prospects can add a field in under a minute. Demo records are fictional and anything they add stays local to this browser.</p>
-        <Link href="/farming/fields/new" className="button full">Add a field</Link>
+        <p className="eyebrow">Presentation mode</p>
+        <p className="muted">Demo records are fictional and anything prospects add stays local to this browser.</p>
       </section>
 
       <section className="section-tabs" aria-label="Demo Farm Manager sections">
