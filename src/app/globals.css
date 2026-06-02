@@ -220,6 +220,14 @@ textarea {
   gap: 10px;
   min-height: 118px;
   padding: 16px;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.action-card.active {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(39, 93, 56, 0.16), var(--shadow);
 }
 
 .action-card span {
@@ -235,6 +243,11 @@ textarea {
 
 .action-card strong {
   font-size: 1.08rem;
+}
+
+.error-text {
+  color: #9b1c1c;
+  font-weight: 800;
 }
 
 .stack {

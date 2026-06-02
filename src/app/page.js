@@ -5,15 +5,15 @@ const sections = [
   {
     eyebrow: "Livestock records",
     title: "Livestock",
-    href: "/livestock",
+    href: "/cows",
     icon: "🐄",
     description: "Search tags, add livestock and offspring, check sires, locations, and herd activity.",
     actions: [
-      { label: "Cows", href: "/livestock" },
-      { label: "Bulls", href: "/sires" },
-      { label: "Calves", href: "/offspring/new" },
-      { label: "Pigs / goats / sheep", href: "/livestock?type=other" },
-      { label: "Report", href: "/livestock/report" },
+      { label: "Cows", href: "/cows" },
+      { label: "Bulls", href: "/bulls" },
+      { label: "Calves", href: "/calves/new" },
+      { label: "Pigs / goats / sheep", href: "/cows?type=pigs" },
+      { label: "Report", href: "/cows/report" },
     ],
   },
   {
@@ -53,8 +53,9 @@ export default function Home() {
       </section>
 
       <section className="search-card">
-        <p className="eyebrow">Presentation mode</p>
-        <p className="muted">This is a safe demo. Records are fictional and stored locally unless Supabase is connected later.</p>
+        <p className="eyebrow">Try it with your farm</p>
+        <p className="muted">Prospects can add a field in under a minute. Demo records are fictional and anything they add stays local to this browser.</p>
+        <Link href="/farming/fields/new" className="button full">Add a field</Link>
       </section>
 
       <section className="section-tabs" aria-label="Demo Farm Manager sections">

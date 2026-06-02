@@ -17,14 +17,14 @@ const cattleModules = [
 ];
 
 const animalGroups = [
-  { type: "cows", title: "Cows", href: "/livestock?type=cows", icon: "🐄", detail: "Breeding cows, tag records, calving history, and watch list." },
-  { type: "bulls", title: "Bulls", href: "/livestock?type=bulls", icon: "🐂", detail: "Herd sires, breeding notes, purchase/sale details, and locations." },
-  { type: "calves", title: "Calves", href: "/livestock?type=calves", icon: "🐮", detail: "Calf tags, birth dates, mother cow links, and health notes." },
-  { type: "pigs", title: "Pigs", href: "/livestock?type=pigs", icon: "🐖", detail: "Pig groups, weights, treatments, farrowing, and feed notes." },
-  { type: "goats", title: "Goats", href: "/livestock?type=goats", icon: "🐐", detail: "Goats, kidding notes, health checks, and breeding groups." },
-  { type: "sheep", title: "Sheep", href: "/livestock?type=sheep", icon: "🐑", detail: "Ewes, lambs, rams, wool notes, and lambing records." },
-  { type: "chickens", title: "Chickens", href: "/livestock?type=chickens", icon: "🐓", detail: "Layers, broilers, egg counts, flock health, and coop notes." },
-  { type: "milk-cows", title: "Milk cows", href: "/livestock?type=milk-cows", icon: "🥛", detail: "Dairy cows, milk production, fresh dates, and treatments." },
+  { type: "cows", title: "Cows", href: "/cows?type=cows", icon: "🐄", detail: "Breeding cows, tag records, calving history, and watch list." },
+  { type: "bulls", title: "Bulls", href: "/cows?type=bulls", icon: "🐂", detail: "Herd sires, breeding notes, purchase/sale details, and locations." },
+  { type: "calves", title: "Calves", href: "/cows?type=calves", icon: "🐮", detail: "Calf tags, birth dates, mother cow links, and health notes." },
+  { type: "pigs", title: "Pigs", href: "/cows?type=pigs", icon: "🐖", detail: "Pig groups, weights, treatments, farrowing, and feed notes." },
+  { type: "goats", title: "Goats", href: "/cows?type=goats", icon: "🐐", detail: "Goats, kidding notes, health checks, and breeding groups." },
+  { type: "sheep", title: "Sheep", href: "/cows?type=sheep", icon: "🐑", detail: "Ewes, lambs, rams, wool notes, and lambing records." },
+  { type: "chickens", title: "Chickens", href: "/cows?type=chickens", icon: "🐓", detail: "Layers, broilers, egg counts, flock health, and coop notes." },
+  { type: "milk-cows", title: "Milk cows", href: "/cows?type=milk-cows", icon: "🥛", detail: "Dairy cows, milk production, fresh dates, and treatments." },
 ];
 
 const demoAnimalRecords = {
@@ -225,7 +225,7 @@ function CowsContent() {
 
       {selectedGroup && (
         <section>
-          <div className="section-heading"><h2>{selectedGroup.title} records</h2><Link href="/livestock">All groups</Link></div>
+          <div className="section-heading"><h2>{selectedGroup.title} records</h2><Link href="/cows">All groups</Link></div>
           <div className="stack">
             {selectedRecords.map(([tag, breed, status, location, note]) => (
               <article className="list-card" key={tag}>

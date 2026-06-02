@@ -62,9 +62,10 @@ export default function FarmingPage() {
       </section>
 
       <section className="hero-card farming-hero">
-        <p className="eyebrow">Start simple</p>
-        <h2>Build around fields first.</h2>
-        <p className="muted">Each field gets a clean history by year, so the app becomes more useful every season without making data entry complicated.</p>
+        <p className="eyebrow">Prospect-friendly demo</p>
+        <h2>Start by adding one of your own fields.</h2>
+        <p className="muted">A farmer can type a field name, acres, crop, and location, then immediately see how the app starts building useful records around it.</p>
+        <Link href="/farming/fields/new" className="button full">Add your field</Link>
       </section>
 
       <section>
@@ -85,8 +86,8 @@ export default function FarmingPage() {
       <section className="action-grid two farming-actions">
         <Link className="action-card detailed-action" href="/farming/fields/new">
           <span>➕</span>
-          <strong>Add field</strong>
-          <small>Create a real field record</small>
+          <strong>Add your field</strong>
+          <small>Try the demo with a real field name</small>
         </Link>
         <Link className="action-card detailed-action" href="/farming/activities/new">
           <span>📝</span>
