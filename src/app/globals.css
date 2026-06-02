@@ -178,6 +178,7 @@ textarea {
   display: block;
   font-size: 1.8rem;
   line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .stat-card span {
@@ -185,6 +186,19 @@ textarea {
   margin-top: 5px;
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.finance-stats .stat-card {
+  padding-inline: 6px;
+}
+
+.finance-stats .stat-card strong {
+  font-size: clamp(1.05rem, 6vw, 1.45rem);
+  letter-spacing: -0.04em;
+}
+
+.finance-stats .stat-card span {
+  font-size: 0.72rem;
 }
 
 .section-heading {

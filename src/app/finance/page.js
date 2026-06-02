@@ -54,13 +54,6 @@ function FinanceContent() {
   }
 
   const departmentSummary = useMemo(() => summarize(entries, department), [entries, department]);
-  const allSummary = useMemo(() => departments.reduce((totals, item) => {
-    const summary = summarize(entries, item.key);
-    totals.revenue += summary.revenue;
-    totals.costs += summary.costs;
-    totals.profit += summary.profit;
-    return totals;
-  }, { revenue: 0, costs: 0, profit: 0 }), [entries]);
   const selectedDepartment = departments.find((item) => item.key === department);
   const options = categoryOptions[department] || categoryOptions.farming;
 
@@ -84,10 +77,10 @@ function FinanceContent() {
         <p className="muted">Separate cost and profit tracking for Farming, Livestock, and Equipment — simple enough for a prospect to try during the demo.</p>
       </header>
 
-      <section className="stats-grid" aria-label="Whole farm financial summary">
-        <div className="stat-card"><strong>{money(allSummary.revenue)}</strong><span>Total revenue</span></div>
-        <div className="stat-card"><strong>{money(allSummary.costs)}</strong><span>Total costs</span></div>
-        <div className="stat-card"><strong>{money(allSummary.profit)}</strong><span>Total profit</span></div>
+      <section className="stats-grid finance-stats" aria-label={`${selectedDepartment.label} financial summary`}>
+        <div className="stat-card"><strong>{money(departmentSummary.revenue)}</strong><span>{selectedDepartment.label} revenue</span></div>
+        <div className="stat-card"><strong>{money(departmentSummary.costs)}</strong><span>{selectedDepartment.label} costs</span></div>
+        <div className="stat-card"><strong>{money(departmentSummary.profit)}</strong><span>{selectedDepartment.label} profit</span></div>
       </section>
 
       <section className="action-grid two finance-departments" aria-label="Financial departments">
