@@ -13,6 +13,7 @@ const cattleModules = [
   { title: "Bulls", href: "/bulls", icon: "🐂", detail: "Manage herd sires by tag, breed, location, and sale/purchase info." },
   { title: "Pastures", href: "/pastures", icon: "🌱", detail: "See where cows and bulls are assigned and add new pasture names." },
   { title: "Herd notes", href: "/activity", icon: "📝", detail: "Review notes, vaccinations, pasture updates, and other cattle events." },
+  { title: "Livestock Financials", href: "/finance?department=livestock", icon: "💰", detail: "Track feed, vet, calf sales, and herd profit separately." },
   { title: "Cattle Report", href: "/cows/report", icon: "📋", detail: "Copy a clean herd snapshot with watch list and pasture summaries." },
 ];
 
@@ -130,6 +131,7 @@ const quickActions = [
   { label: "Add Cow", href: "/cows/new", icon: "➕", detail: "Start a new cow record" },
   { label: "Add Calf", href: "/calves/new", icon: "🐮", detail: "Link a calf to its mother" },
   { label: "Log Note", href: "/notes/new", icon: "📝", detail: "Save a herd or cow note" },
+  { label: "Add Cost", href: "/finance?department=livestock&type=Cost", icon: "💰", detail: "Track livestock expense" },
 ];
 
 function CowsContent() {

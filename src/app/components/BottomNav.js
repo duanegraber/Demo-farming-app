@@ -8,8 +8,8 @@ const links = [
   { href: "/cows", label: "Livestock" },
   { href: "/farming", label: "Farming" },
   { href: "/equipment", label: "Equipment" },
+  { href: "/finance", label: "Money" },
   { href: "/activity", label: "Activity" },
-  { href: "/admin", label: "Admin" },
 ];
 
 export default function BottomNav() {

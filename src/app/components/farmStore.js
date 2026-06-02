@@ -13,6 +13,7 @@ const FIELD_ACTIVITIES_KEY = "demo-farming-app-field-activities";
 const CROP_SALES_KEY = "demo-farming-app-crop-sales";
 const EQUIPMENT_KEY = "demo-farming-app-equipment";
 const EQUIPMENT_LOGS_KEY = "demo-farming-app-equipment-logs";
+const FINANCE_KEY = "demo-farming-app-finance";
 const DEMO_SEED_KEY = "demo-farming-app-seed-version";
 const DEMO_SEED_VERSION = "2026-05-21-c";
 
@@ -69,6 +70,18 @@ const demoEquipmentLogs = [
   { id: "demo-equipment-log-1", equipmentId: "demo-equipment-1", equipmentName: "John Deere 6155R", type: "Maintenance", logDate: "2026-04-15", logYear: 2026, vendor: "Demo Ag Service", description: "Spring service: oil, filters, inspection", meterReading: 2798, fuelAmount: "", fuelUnit: "litres", cost: 1180, notes: "Ready for seeding season.", user: "Sam", time: "Apr 15, 4:10 PM" },
   { id: "demo-equipment-log-2", equipmentId: "demo-equipment-1", equipmentName: "John Deere 6155R", type: "Fuel", logDate: "2026-05-05", logYear: 2026, vendor: "Co-op Demo Fuel", description: "Dyed diesel fill", meterReading: 2832, fuelAmount: 420, fuelUnit: "litres", cost: 612, notes: "Seeding fuel entry.", user: "Maya", time: "May 5, 7:00 PM" },
   { id: "demo-equipment-log-3", equipmentId: "demo-equipment-2", equipmentName: "Case IH 8240 Combine", type: "Repair", logDate: "2026-08-12", logYear: 2026, vendor: "Harvest Parts Demo", description: "Replaced belt and inspected feeder chain", meterReading: 1728, fuelAmount: "", fuelUnit: "litres", cost: 2450, notes: "Pre-harvest repair example.", user: "Alex", time: "Aug 12, 1:35 PM" },
+];
+
+const demoFinanceEntries = [
+  { id: "demo-finance-farming-1", department: "farming", type: "Cost", category: "Seed", date: "2026-04-22", description: "Wheat seed - East Pivot", amount: 7392, notes: "Shows crop input costs separate from livestock and equipment." },
+  { id: "demo-finance-farming-2", department: "farming", type: "Cost", category: "Fertilizer", date: "2026-04-24", description: "Urea + MAP blend", amount: 18480, notes: "Input cost for profitability demo." },
+  { id: "demo-finance-farming-3", department: "farming", type: "Revenue", category: "Crop sale", date: "2026-09-04", description: "Barley sale - South Quarter", amount: 50430, notes: "Net revenue after deductions." },
+  { id: "demo-finance-livestock-1", department: "livestock", type: "Cost", category: "Feed", date: "2026-02-10", description: "Winter feed and mineral", amount: 6850, notes: "Simple herd cost entry." },
+  { id: "demo-finance-livestock-2", department: "livestock", type: "Cost", category: "Vet", date: "2026-05-03", description: "Treatment and preg-check supplies", amount: 940, notes: "Health costs stay in livestock." },
+  { id: "demo-finance-livestock-3", department: "livestock", type: "Revenue", category: "Calf sale", date: "2026-10-18", description: "Demo weaned calf group", amount: 18450, notes: "Shows profit without a spreadsheet." },
+  { id: "demo-finance-equipment-1", department: "equipment", type: "Cost", category: "Maintenance", date: "2026-04-15", description: "Tractor spring service", amount: 1180, notes: "Equipment costs can be reviewed separately." },
+  { id: "demo-finance-equipment-2", department: "equipment", type: "Cost", category: "Fuel", date: "2026-05-05", description: "Dyed diesel fill", amount: 612, notes: "Fuel cost example." },
+  { id: "demo-finance-equipment-3", department: "equipment", type: "Revenue", category: "Custom work", date: "2026-08-30", description: "Custom combining income", amount: 4200, notes: "Optional revenue for equipment department." },
 ];
 
 function isLegacyDemoData(key, value) {
@@ -457,6 +470,10 @@ export function getEquipmentLogs() {
   return readJson(EQUIPMENT_LOGS_KEY, []);
 }
 
+export function getFinanceEntries() {
+  return readJson(FINANCE_KEY, demoFinanceEntries);
+}
+
 function writeDemoJsonIfEmpty(key, value) {
   if (readJson(key, []).length > 0) return;
   writeJson(key, value);
@@ -472,6 +489,7 @@ function writeDemoSeedData() {
   writeJson(CROP_SALES_KEY, demoCropSales);
   writeJson(EQUIPMENT_KEY, demoEquipment);
   writeJson(EQUIPMENT_LOGS_KEY, demoEquipmentLogs);
+  writeJson(FINANCE_KEY, demoFinanceEntries);
   window.localStorage.setItem(DEMO_SEED_KEY, DEMO_SEED_VERSION);
 }
 
@@ -503,6 +521,7 @@ export async function clearAllFarmRecords() {
   removeJson(CROP_SALES_KEY);
   removeJson(EQUIPMENT_KEY);
   removeJson(EQUIPMENT_LOGS_KEY);
+  removeJson(FINANCE_KEY);
   removeJson(COWS_KEY);
 
   if (!hasSupabaseConfig) {
@@ -739,6 +758,26 @@ export async function loadCropSales() {
   const { data, error } = await supabase.from("crop_sales").select("*").order("sale_date", { ascending: false }).order("created_at", { ascending: false });
   if (error) return getCropSales();
   return data.map(cropSaleFromDb);
+}
+
+export async function loadFinanceEntries() {
+  return getFinanceEntries().sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+}
+
+export async function createFinanceEntry(values) {
+  const entry = {
+    id: `finance-${Date.now()}`,
+    department: values.department || "farming",
+    type: values.type || "Cost",
+    category: values.category?.trim() || (values.type === "Revenue" ? "Revenue" : "Cost"),
+    date: values.date || new Date().toISOString().slice(0, 10),
+    description: values.description?.trim() || "Financial entry",
+    amount: formatMoney(values.amount) ?? 0,
+    notes: values.notes?.trim() || "",
+  };
+
+  writeJson(FINANCE_KEY, [entry, ...getFinanceEntries()]);
+  return entry;
 }
 
 export async function createCropSale(values) {

@@ -54,7 +54,7 @@ export default function EquipmentPage() {
           <h1>Equipment</h1>
           <Link href="/equipment/new" className="button compact">Add</Link>
         </div>
-        <p className="muted">Track machines, repairs, maintenance, fuel, and yearly equipment cost.</p>
+        <p className="muted">Track machines, repairs, maintenance, fuel, and yearly equipment cost. Financials keep equipment profit and costs separate from farming and livestock.</p>
       </header>
 
       <section className="search-card">
@@ -71,7 +71,7 @@ export default function EquipmentPage() {
 
       <section className="action-grid two">
         <Link className="action-card detailed-action" href="/equipment/new"><span>➕</span><strong>Add equipment</strong><small>Set up a tractor, truck, combine, or tool</small></Link>
-        <Link className="action-card detailed-action" href="/equipment/logs/new"><span>🧾</span><strong>Add log</strong><small>Fuel, maintenance, or repair cost</small></Link>
+        <Link className="action-card detailed-action" href="/finance?department=equipment&type=Cost"><span>💰</span><strong>Add cost</strong><small>Track equipment financials</small></Link>
       </section>
 
       <section className="search-card">

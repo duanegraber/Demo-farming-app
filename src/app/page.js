@@ -41,6 +41,19 @@ const sections = [
       { label: "Add log", href: "/equipment/logs/new" },
     ],
   },
+  {
+    eyebrow: "Profit and cost",
+    title: "Financials",
+    href: "/finance",
+    icon: "💰",
+    description: "Separate cost, revenue, and profit tracking for Farming, Livestock, and Equipment.",
+    actions: [
+      { label: "Farming", href: "/finance?department=farming" },
+      { label: "Livestock", href: "/finance?department=livestock" },
+      { label: "Equipment", href: "/finance?department=equipment" },
+      { label: "Add cost", href: "/finance?type=Cost" },
+    ],
+  },
 ];
 
 export default function Home() {

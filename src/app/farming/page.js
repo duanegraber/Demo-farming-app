@@ -11,6 +11,7 @@ const modules = [
   { title: "Activities", href: "/farming/activities", detail: "Log seeding, fertilizer, spraying, tillage, irrigation, harvest, or a quick note.", icon: "🚜" },
   { title: "Crop Sales", href: "/farming/sales", detail: "Track sold crop, buyers, prices, deductions, revenue, and profit.", icon: "💵" },
   { title: "Profit per acre", href: "/farming/crop-year", detail: "Costs, yields, and sales combine into field profitability.", icon: "📈" },
+  { title: "Farming Financials", href: "/finance?department=farming", detail: "Add farm costs and revenue to show department profit quickly.", icon: "💰" },
   { title: "Crop Report", href: "/farming/report", detail: "Clean season summary by crop and field, with copy/share text.", icon: "📋" },
 ];
 
@@ -94,10 +95,10 @@ export default function FarmingPage() {
           <strong>Add activity</strong>
           <small>Log a real field activity</small>
         </Link>
-        <Link className="action-card detailed-action" href="/farming/sales/new">
-          <span>💵</span>
-          <strong>Add sale</strong>
-          <small>Record crop revenue</small>
+        <Link className="action-card detailed-action" href="/finance?department=farming&type=Cost">
+          <span>💰</span>
+          <strong>Add cost</strong>
+          <small>Show farm profit and expenses</small>
         </Link>
       </section>
 
