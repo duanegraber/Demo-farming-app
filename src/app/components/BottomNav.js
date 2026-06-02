@@ -8,7 +8,7 @@ const links = [
   { href: "/cows", label: "Livestock" },
   { href: "/farming", label: "Farming" },
   { href: "/equipment", label: "Equipment" },
-  { href: "/finance", label: "Money" },
+  { href: "/finance", label: "Financials" },
   { href: "/activity", label: "Activity" },
   { href: "/admin", label: "Admin" },
 ];
