@@ -342,7 +342,7 @@ textarea {
   transform: translateX(-50%);
   z-index: 5;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   width: min(calc(100% - 24px), 500px);
   padding: 8px;
   border: 1px solid var(--border);
@@ -352,10 +352,10 @@ textarea {
 }
 
 .bottom-nav a {
-  padding: 11px 6px;
+  padding: 11px 4px;
   border-radius: 15px;
   color: var(--green-dark);
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 900;
   text-align: center;
 }
